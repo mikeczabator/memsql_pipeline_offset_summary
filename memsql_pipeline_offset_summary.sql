@@ -1,0 +1,1 @@
+select database_name, pipeline_name, source_type, format(sum(latest_offset)-sum(successful_cursor_offset),0) as offset_backlog, round(unix_timestamp()-max(UPDATED_UNIX_TIMESTAMP),2) as seconds_since_last_update from information_schema.PIPELINES_CURSORS group by 1,2,3 order by 1,2;
